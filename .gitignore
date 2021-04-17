@@ -1,0 +1,9 @@
+bin/
+logs/
+obj/
+packages/
+*.csproj.user
+*.log
+*.pdb
+*.suo
+*.pubxml
