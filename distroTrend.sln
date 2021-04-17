@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "distroTrend", "distroTrend\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{94A73100-C1DA-4579-9824-6D166D8A3612}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{BAC6AD17-07F4-4C53-9EEA-2DD0B139606D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{94A73100-C1DA-4579-9824-6D166D8A3612}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94A73100-C1DA-4579-9824-6D166D8A3612}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94A73100-C1DA-4579-9824-6D166D8A3612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAC6AD17-07F4-4C53-9EEA-2DD0B139606D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC6AD17-07F4-4C53-9EEA-2DD0B139606D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC6AD17-07F4-4C53-9EEA-2DD0B139606D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC6AD17-07F4-4C53-9EEA-2DD0B139606D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

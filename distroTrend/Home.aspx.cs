@@ -52,7 +52,7 @@ namespace distroTrend
                 dr[Rank] = rank;
                 rank++;
 
-                dr["Name"] = "<a href='DistroMain.aspx?distroCode=" + dr["Code"].ToString() + "'>"+ dr["Name"] + "</a>";
+                dr["Name"] = "<a href='DistroMain.aspx?"+ Helper.Constants.URL_PARAMETER_DISTRO_CODE + "=" + dr["Code"].ToString() + "'>"+ dr["Name"] + "</a>";
             }
         }
         public DataTable ToDataTable<T>(IEnumerable<T> self)

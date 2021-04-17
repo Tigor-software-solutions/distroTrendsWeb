@@ -4,7 +4,8 @@
 
         <div>
             <br />
-            <asp:GridView ID="GridView1" runat="server" CssClass="table"></asp:GridView>
+            <asp:Label ID="lblName" runat="server"></asp:Label>
+            <asp:Label ID="lblDescription" runat="server"></asp:Label>
         </div>
     
 </asp:Content>

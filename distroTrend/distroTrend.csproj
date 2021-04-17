@@ -240,6 +240,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{bac6ad17-07f4-4c53-9eea-2dd0b139606d}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{94a73100-c1da-4579-9824-6d166d8a3612}</Project>
       <Name>Model</Name>
