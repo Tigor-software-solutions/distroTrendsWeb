@@ -15,6 +15,11 @@ namespace distroTrend
         }
         private DataSet GetDistros()
         {
+            //return GetDistrosFromClass();
+            return GetDistrosFromDB();
+        }
+        private DataSet GetDistrosFromClass()
+        {
             DataSet ds = new DataSet();
             
             List<Model.Distro> listDistro = new List<Distro>();
@@ -41,6 +46,18 @@ namespace distroTrend
 
             return ds;
         }
+        private DataSet GetDistrosFromDB()
+        {
+            DataSet ds = new DataSet();
+
+            ModelDB.Distro distro = new ModelDB.Distro();
+            ds = distro.GetDistro();
+
+            GetDistroRanking(ds.Tables[0]);
+
+            return ds;
+        }
+
         private void GetDistroRanking(DataTable dt)
         {
             const string Rank = "Rank";
