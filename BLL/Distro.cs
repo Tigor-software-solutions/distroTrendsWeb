@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using DAL;
 
-namespace BAL
+namespace BLL
 {
     public class DistroBAL
     {
