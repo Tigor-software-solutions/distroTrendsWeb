@@ -240,9 +240,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BAL\BAL.csproj">
+    <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{f20a3967-600b-4d3b-8e44-ff6fde3e9520}</Project>
-      <Name>BAL</Name>
+      <Name>BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Helper\Helper.csproj">
       <Project>{bac6ad17-07f4-4c53-9eea-2dd0b139606d}</Project>
