@@ -13,34 +13,17 @@ namespace distroTrend
         {
             string distroCode = Convert.ToString(Request.QueryString[Helper.Constants.URL_PARAMETER_DISTRO_CODE]);
 
-            Distro distro = GetDistros().Where(x => x.Code == distroCode).SingleOrDefault();
+            //Distro distro = GetDistros().Where(x => x.Code == distroCode).SingleOrDefault();
+            BLL.Distro objDistro = new BLL.Distro();
+            Distro distro = objDistro.GetDistro().Where(x => x.Code.Trim() == distroCode).SingleOrDefault();
 
             if (distro != null)
             {
                 lblName.Text = distro.Name;
                 lblDescription.Text = distro.Description;
+                hlUrl.Text = "Click here to visit the website";
+                hlUrl.NavigateUrl = distro.HomePage;
             }
-        }
-
-        private List<Distro> GetDistros()
-        {
-            List<Distro> listDistro = new List<Distro>();
-
-            Distro objDistro = new Distro
-            {
-                Code = "UBT",
-                Name = "Ubuntu"
-            };
-            listDistro.Add(objDistro);
-
-            objDistro = new Distro
-            {
-                Code = "Mint",
-                Name = "LinuxMint"
-            };
-            listDistro.Add(objDistro);
-
-            return listDistro;
         }
     }
 }

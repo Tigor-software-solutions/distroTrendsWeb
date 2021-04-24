@@ -5,7 +5,11 @@
         <div>
             <br />
             <asp:Label ID="lblName" runat="server"></asp:Label>
+            <br />
             <asp:Label ID="lblDescription" runat="server"></asp:Label>
+            <br />
+            <asp:HyperLink ID="hlUrl" runat="server" Target="_blank"></asp:HyperLink>
+            <br />
         </div>
     
 </asp:Content>

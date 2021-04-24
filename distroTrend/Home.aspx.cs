@@ -51,7 +51,7 @@ namespace distroTrend
             DataSet ds = new DataSet();
 
             BLL.Distro distro = new BLL.Distro();
-            ds = distro.GetDistro();
+            ds = distro.GetDistroAsDataSet();
 
             GetDistroRanking(ds.Tables[0]);
 

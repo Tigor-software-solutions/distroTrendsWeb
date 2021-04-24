@@ -3,7 +3,7 @@ using System.Data;
 
 namespace DAL
 {
-    class Distro
+    public class Distro
     {
         public DataSet GetDistro()
         {
