@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using DAL;
+﻿using System.Data;
 
 namespace BLL
 {
-    public class DistroBAL
+    public class Distro
     {
         public DataSet GetDistro()
         {
-            DBConn conn = new DBConn();
-            String query = "SELECT * FROM distro";
-            return conn.GetData(query);
+            Distro objDistro = new Distro();
+            
+            return objDistro.GetDistro();
         }
     }
 }

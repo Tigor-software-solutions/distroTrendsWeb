@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using BLL;
 
 namespace distroTrend
 {
@@ -51,7 +50,7 @@ namespace distroTrend
         {
             DataSet ds = new DataSet();
 
-            DistroBAL distro = new DistroBAL();
+            BLL.Distro distro = new BLL.Distro();
             ds = distro.GetDistro();
 
             GetDistroRanking(ds.Tables[0]);
