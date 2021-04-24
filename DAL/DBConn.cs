@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace distroTrend
+namespace DAL
 {
     public class DBConn
     {

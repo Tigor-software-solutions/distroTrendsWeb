@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using BAL;
 
 namespace distroTrend
 {
@@ -21,12 +22,12 @@ namespace distroTrend
         private DataSet GetDistrosFromClass()
         {
             DataSet ds = new DataSet();
-            
+
             List<Model.Distro> listDistro = new List<Distro>();
 
             Distro objDistro = new Distro
-            { 
-                Code="UBT",
+            {
+                Code = "UBT",
                 Name = "Ubuntu"
             };
             listDistro.Add(objDistro);
@@ -50,7 +51,7 @@ namespace distroTrend
         {
             DataSet ds = new DataSet();
 
-            ModelDB.Distro distro = new ModelDB.Distro();
+            DistroBAL distro = new DistroBAL();
             ds = distro.GetDistro();
 
             GetDistroRanking(ds.Tables[0]);
@@ -62,14 +63,14 @@ namespace distroTrend
         {
             const string Rank = "Rank";
             dt.Columns.Add(Rank, typeof(Int32)).SetOrdinal(0);
-            
+
             int rank = 1;
             foreach (DataRow dr in dt.Rows)
             {
                 dr[Rank] = rank;
                 rank++;
 
-                dr["Name"] = "<a href='DistroMain.aspx?"+ Helper.Constants.URL_PARAMETER_DISTRO_CODE + "=" + dr["Code"].ToString() + "'>"+ dr["Name"] + "</a>";
+                dr["Name"] = "<a href='DistroMain.aspx?" + Helper.Constants.URL_PARAMETER_DISTRO_CODE + "=" + dr["Code"].ToString() + "'>" + dr["Name"] + "</a>";
             }
         }
         public DataTable ToDataTable<T>(IEnumerable<T> self)

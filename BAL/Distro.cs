@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Data;
+using DAL;
 
-namespace distroTrend.ModelDB
+namespace BAL
 {
-    public class Distro
+    public class DistroBAL
     {
         public DataSet GetDistro()
         {
