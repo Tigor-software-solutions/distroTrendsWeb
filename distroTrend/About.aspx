@@ -2,6 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
-    <h3>Your application description page.</h3>
-    <p>Use this area to provide additional information.</p>
+    <h3>distroTrend website aims to help users to choose best distro for their needs.</h3>
+    <p>distroTrend offers Ranking, Reviews to help user choose the suitable distribution.</p>
 </asp:Content>
