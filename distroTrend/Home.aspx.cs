@@ -10,8 +10,8 @@ namespace distroTrend
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GridView1.DataSource = GetDistros();
-            GridView1.DataBind();
+            gvMain.DataSource = GetDistros();
+            gvMain.DataBind();
         }
         private DataSet GetDistros()
         {
@@ -85,6 +85,12 @@ namespace distroTrend
                 dataTable.Rows.Add(properties.Select(p => p.GetValue(entity)).ToArray());
 
             return dataTable;
+        }
+
+        protected void gvMain_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
+        {
+            gvMain.PageIndex = e.NewPageIndex;
+            gvMain.DataBind();
         }
     }
 }
