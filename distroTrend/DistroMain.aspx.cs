@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using distroTrend.Model;
+using System;
 using System.Data;
 using System.Linq;
-using distroTrend.Model;
 
 namespace distroTrend
 {
@@ -13,7 +12,6 @@ namespace distroTrend
         {
             string distroCode = Convert.ToString(Request.QueryString[Helper.Constants.URL_PARAMETER_DISTRO_CODE]);
 
-            //Distro distro = GetDistros().Where(x => x.Code == distroCode).SingleOrDefault();
             BLL.Distro objDistro = new BLL.Distro();
             Distro distro = objDistro.GetDistro().Where(x => x.Code.Trim() == distroCode).SingleOrDefault();
 
@@ -21,8 +19,14 @@ namespace distroTrend
             {
                 lblName.Text = distro.Name;
                 lblDescription.Text = distro.Description;
-                hlUrl.Text = "Click here to visit the website";
-                hlUrl.NavigateUrl = distro.HomePage;
+
+                if (!string.IsNullOrWhiteSpace(distro.HomePage))
+                {
+                    hlUrl.Text = "Click here to visit the website";
+                    hlUrl.NavigateUrl = distro.HomePage;
+                }
+                else
+                    hlUrl.Text = "Not set";
             }
         }
     }
