@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -13,7 +14,8 @@ namespace DAL
             SqlDataAdapter adapter;
             DataSet ds = new DataSet();
 
-            connectionString = @"workstation id=distroTrends.mssql.somee.com;packet size=4096;user id=tigor_SQLLogin_1;pwd=o4yf9wokqh;data source=distroTrends.mssql.somee.com;persist security info=False;initial catalog=distroTrends";
+            //connectionString = @"workstation id=distroTrends.mssql.somee.com;packet size=4096;user id=tigor_SQLLogin_1;pwd=o4yf9wokqh;data source=distroTrends.mssql.somee.com;persist security info=False;initial catalog=distroTrends";
+            connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
 
             sqlConn = new SqlConnection(connectionString);
 

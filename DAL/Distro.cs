@@ -8,7 +8,7 @@ namespace DAL
         public DataSet GetDistro()
         {
             DBConn conn = new DBConn();
-            String query = "SELECT * FROM distro";
+            String query = "SELECT * FROM tbl_Distro";
             return conn.GetData(query);
         }
     }
