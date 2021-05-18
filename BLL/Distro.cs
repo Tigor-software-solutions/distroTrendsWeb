@@ -21,6 +21,7 @@ namespace BLL
             var distroList = ds.Tables[0].AsEnumerable()
                 .Select(dataRow => new distroTrend.Model.Distro
                 {
+                    Id = dataRow.Field<int>("Id"),
                     Code = dataRow.Field<string>("Code"),
                     Name = dataRow.Field<string>("Name"),
                     Description = dataRow.Field<string>("Description"),

@@ -12,3 +12,7 @@ FROM tbl_DistroEdition
 
 SELECT *
 FROM tbl_EditionVersion
+
+SELECT * FROM tbl_Edition E
+Inner Join tbl_DistroEdition D ON E.Id = D.EditionId
+Where D.DistroId = 3

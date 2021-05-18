@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Distro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Edition.cs" />
+    <Compile Include="Version.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
