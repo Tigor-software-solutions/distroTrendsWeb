@@ -56,5 +56,12 @@ namespace BLL
 
             return objDistro.Update(connectionString, id, description);
         }
+
+        public int Update(string connectionString, int id, distroTrend.Model.Distro distro)
+        {
+            DAL.Distro objDistro = new DAL.Distro();
+
+            return objDistro.Update(connectionString, id, distro);
+        }
     }
 }

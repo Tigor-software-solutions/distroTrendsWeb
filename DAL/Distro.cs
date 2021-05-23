@@ -50,5 +50,20 @@ namespace DAL
 
             return conn.UpdateData(connectionString, query, sp);
         }
+
+        public int Update(string connectionString, int id, distroTrend.Model.Distro distro)
+        {
+            DBConn conn = new DBConn();
+            String query = "UPDATE [dbo].[tbl_Distro] SET [Description] = @Description, ImageURL = @ImageURL WHERE Id = @Id";
+
+            List<SqlParameter> sp = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value= id},
+                new SqlParameter() {ParameterName = "@Description", SqlDbType = SqlDbType.NVarChar, Value= distro.Description},
+                new SqlParameter() {ParameterName = "@ImageURL", SqlDbType = SqlDbType.NVarChar, Value= distro.ImageURL}
+            };
+
+            return conn.UpdateData(connectionString, query, sp);
+        }
     }
 }
