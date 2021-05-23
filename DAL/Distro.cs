@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace DAL
 {
@@ -10,6 +12,43 @@ namespace DAL
             DBConn conn = new DBConn();
             String query = "SELECT * FROM tbl_Distro";
             return conn.GetData(query);
+        }
+
+        public DataSet GetDistro(string code, string sqlConn)
+        {
+            DBConn conn = new DBConn();
+            String query = "SELECT * FROM tbl_Distro WHERE Code = '"+ code + "'";
+            return conn.GetData(query, sqlConn);
+        }
+
+        public int Insert(string code, string name, string description, string homePage)
+        {
+            DBConn conn = new DBConn();
+            String query = "INSERT INTO [dbo].[tbl_Distro] ([Code],[Name],[Description],[HomePage]) Values (@Code, @Name, @Description, @HomePage)";
+           
+            List<SqlParameter> sp = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName = "@Code", SqlDbType = SqlDbType.NVarChar, Value= code},
+                new SqlParameter() {ParameterName = "@Name", SqlDbType = SqlDbType.NVarChar, Value= name},
+                new SqlParameter() {ParameterName = "@Description", SqlDbType = SqlDbType.NVarChar, Value= description},
+                new SqlParameter() {ParameterName = "@HomePage", SqlDbType = SqlDbType.NVarChar, Value= homePage}
+            };
+
+            return conn.InsertData(query, sp);
+        }
+
+        public int Update(string connectionString, int id, string description)
+        {
+            DBConn conn = new DBConn();
+            String query = "UPDATE [dbo].[tbl_Distro] SET [Description] = @Description WHERE Id = @Id";
+
+            List<SqlParameter> sp = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value= id},
+                new SqlParameter() {ParameterName = "@Description", SqlDbType = SqlDbType.NVarChar, Value= description}
+            };
+
+            return conn.UpdateData(connectionString, query, sp);
         }
     }
 }
