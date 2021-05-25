@@ -25,7 +25,8 @@ namespace BLL
                     Code = dataRow.Field<string>("Code"),
                     Name = dataRow.Field<string>("Name"),
                     Description = dataRow.Field<string>("Description"),
-                    HomePage = dataRow.Field<string>("HomePage")
+                    HomePage = dataRow.Field<string>("HomePage"),
+                    ImageURL = dataRow.Field<string>("ImageURL")
                 }).ToList();
 
             return distroList;
@@ -44,7 +45,8 @@ namespace BLL
                     Code = dataRow.Field<string>("Code"),
                     Name = dataRow.Field<string>("Name"),
                     Description = dataRow.Field<string>("Description"),
-                    HomePage = dataRow.Field<string>("HomePage")
+                    HomePage = dataRow.Field<string>("HomePage"),
+                    ImageURL = dataRow.Field<string>("ImageURL")
                 }).FirstOrDefault();
 
             return distroList;

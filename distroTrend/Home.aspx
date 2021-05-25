@@ -13,7 +13,6 @@
             <Columns>
                 <asp:BoundField DataField="Rank" HeaderText="Rank" ReadOnly="True" SortExpression="Rank" />
                 <asp:HyperLinkField DataNavigateUrlFields="Name" DataTextField="Name" HeaderText="Name" />
-                <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
             </Columns>
             <PagerStyle CssClass="cssPager" />
         </asp:GridView>

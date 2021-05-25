@@ -26,6 +26,8 @@ namespace distroTrend
             {
                 lblName.Text = distro.Name;
                 lblDescription.Text = distro.Description;
+                if(!string.IsNullOrEmpty(distro.ImageURL))
+                    imgLogo.ImageUrl = "https://distrowatch.com/" + distro.ImageURL;
 
                 if (!string.IsNullOrWhiteSpace(distro.HomePage))
                 {

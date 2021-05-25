@@ -8,7 +8,9 @@
         <dl class="dl-horizontal">
             <dt>Name</dt>
             <dd>
-                <asp:Label ID="lblName" runat="server"></asp:Label></dd>
+                <asp:Label ID="lblName" runat="server"></asp:Label>
+                <asp:Image ID="imgLogo" runat="server" />
+            </dd>
         </dl>
         <dl class="dl-horizontal">
             <dt>Description</dt>
