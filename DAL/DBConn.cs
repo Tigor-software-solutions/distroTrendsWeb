@@ -87,7 +87,17 @@ namespace DAL
             command = new SqlCommand(query, sqlConn);
 
             if (sp != null)
-                command.Parameters.AddRange(sp.ToArray());
+            {
+                //command.Parameters.AddRange(sp.ToArray());
+
+                foreach(SqlParameter param in sp)
+                {
+                    if (param.Value != null)
+                        command.Parameters.Add(param);
+                    else
+                        command.Parameters.AddWithValue(param.ParameterName, DBNull.Value);
+                }
+            }
 
             try
             {
