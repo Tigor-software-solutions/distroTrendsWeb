@@ -1,4 +1,5 @@
 ﻿using distroTrend.Model;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,13 +10,17 @@ namespace distroTrend
     public partial class DistroMain
         : System.Web.UI.Page
     {
+        static Logger logger = LogManager.GetCurrentClassLogger();
         protected void Page_Load(object sender, EventArgs e)
         {
+            logger.Trace("Inside " + this.GetType().Name + ".Page_Load()");
             int distroId = 0;
             Distro distro = null;
 
             if (Request.QueryString[Helper.Constants.URL_PARAMETER_DISTRO_ID] != null)
                 distroId = Convert.ToInt32(Request.QueryString[Helper.Constants.URL_PARAMETER_DISTRO_ID].ToString());
+
+            logger.Debug("Parameter distroId=" + distroId);
 
             BLL.Distro objDistro = new BLL.Distro();
 
@@ -26,7 +31,7 @@ namespace distroTrend
             {
                 lblName.Text = distro.Name;
                 lblDescription.Text = distro.Description;
-                if(!string.IsNullOrEmpty(distro.ImageURL))
+                if (!string.IsNullOrEmpty(distro.ImageURL))
                     //imgLogo.ImageUrl = "https://distrowatch.com/" + distro.ImageURL;
                     imgLogo.ImageUrl = distro.ImageURL;
 
