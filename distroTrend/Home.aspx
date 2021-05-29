@@ -12,6 +12,7 @@
         <asp:GridView ID="gvMain" runat="server" CssClass="table" AutoGenerateColumns="false" AllowPaging="true" OnPageIndexChanging="gvMain_PageIndexChanging">
             <Columns>
                 <asp:BoundField DataField="Rank" HeaderText="Rank" ReadOnly="True" SortExpression="Rank" />
+                <asp:ImageField DataImageUrlField="ImageURL" ItemStyle-Width="50px" ControlStyle-Width="25" ControlStyle-Height="25" />
                 <asp:HyperLinkField DataNavigateUrlFields="Name" DataTextField="Name" HeaderText="Name" />
             </Columns>
             <PagerStyle CssClass="cssPager" />
