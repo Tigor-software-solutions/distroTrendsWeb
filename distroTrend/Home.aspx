@@ -14,6 +14,7 @@
                 <asp:BoundField DataField="Rank" HeaderText="Rank" ReadOnly="True" SortExpression="Rank" />
                 <asp:ImageField DataImageUrlField="ImageURL" ItemStyle-Width="50px" ControlStyle-Width="25" ControlStyle-Height="25" />
                 <asp:HyperLinkField DataNavigateUrlFields="Name" DataTextField="Name" HeaderText="Name" />
+                <asp:BoundField DataField="Points" HeaderText="Points" ReadOnly="True" SortExpression="Points" />
             </Columns>
             <PagerStyle CssClass="cssPager" />
         </asp:GridView>

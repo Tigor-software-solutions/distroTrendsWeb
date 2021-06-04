@@ -24,7 +24,7 @@ BEGIN
 		,DATE
 		,GoogleTrendsPoints
 		,DistroWatchPoints
-	FROM tbl_Point
+	FROM tbl_Points
 	WHERE TotalPoints IS NULL
 
 	OPEN db_cursor
@@ -44,7 +44,7 @@ BEGIN
 		SET @DistroWatchWeightage = @DistroWatchPointsFinal * 0.3;
 		SET @TotalPoints = @GoogleTrendsWeightage + @DistroWatchWeightage;
 
-		UPDATE tbl_Point
+		UPDATE tbl_Points
 		SET GoogleTrendsPointsFinal = @GoogleTrendsPointsFinal
 			,GoogleTrendsWeightage = @GoogleTrendsWeightage
 			,DistroWatchPointsFinal = @DistroWatchPointsFinal

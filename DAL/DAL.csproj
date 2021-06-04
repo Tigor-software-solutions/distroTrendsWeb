@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="DBConn.cs" />
     <Compile Include="Edition.cs" />
+    <Compile Include="Points.cs" />
     <Compile Include="Version.cs" />
     <Compile Include="Distro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

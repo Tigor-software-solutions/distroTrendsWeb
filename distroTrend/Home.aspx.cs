@@ -17,7 +17,7 @@ namespace distroTrend
             gvMain.DataSource = GetDistros();
             gvMain.DataBind();
         }
-        private DataSet GetDistros()
+        private DataTable GetDistros()
         {
             //return GetDistrosFromClass();
             return GetDistrosFromDB();
@@ -50,25 +50,57 @@ namespace distroTrend
 
             return ds;
         }
-        private DataSet GetDistrosFromDB()
+        private DataTable GetDistrosFromDB()
         {
             DataSet ds = new DataSet();
 
             BLL.Distro distro = new BLL.Distro();
             ds = distro.GetDistroAsDataSet();
 
-            GetDistroRanking(ds.Tables[0]);
+            DataTable dt = GetDistroRanking(ds.Tables[0]);
 
-            return ds;
+            return dt;
         }
 
-        private void GetDistroRanking(DataTable dt)
+        private DataTable GetDistroRanking(DataTable dt)
         {
+            const string Points = "Points";
             const string Rank = "Rank";
-            dt.Columns.Add(Rank, typeof(Int32)).SetOrdinal(0);
+
+            BLL.Points objPoints = new BLL.Points();
+            List<distroTrend.Model.Points> listPoints;
+            listPoints = objPoints.GetPoints();
+
+            dt.Columns.Add(Points, typeof(Decimal)).SetOrdinal(2);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                string tempDistroId = null;
+                if (dr["Id"] != null)//distroId
+                    tempDistroId = dr["Id"].ToString();
+                int distroId = 0;
+
+                if (tempDistroId != null)
+                    distroId = Convert.ToInt32(tempDistroId);
+
+                distroTrend.Model.Points point = listPoints.Where(x => x.distroId == distroId).FirstOrDefault();
+                string points = "0";
+                if (point != null)
+                    points = point.TotalPoints.ToString();
+
+                logger.Debug("distroId=" + distroId + ", points=" + points);
+
+                dr[Points] = points;
+            }
+
+            DataView dv = dt.DefaultView;
+            dv.Sort = "points desc";
+            DataTable sortedDT = dv.ToTable();
+
+            sortedDT.Columns.Add(Rank, typeof(Int32)).SetOrdinal(0);
 
             int rank = 1;
-            foreach (DataRow dr in dt.Rows)
+            foreach (DataRow dr in sortedDT.Rows)
             {
                 dr[Rank] = rank;
                 rank++;
@@ -76,6 +108,8 @@ namespace distroTrend
                 //dr["Name"] = "<a href='DistroMain.aspx?" + Helper.Constants.URL_PARAMETER_DISTRO_CODE + "=" + dr["Code"].ToString() + "'>" + dr["Name"] + "</a>";
                 dr["Name"] = "<a href='DistroMain.aspx?" + Helper.Constants.URL_PARAMETER_DISTRO_ID + "=" + dr["Id"].ToString() + "'>" + dr["Name"] + "</a>";
             }
+
+            return sortedDT;
         }
         public DataTable ToDataTable<T>(IEnumerable<T> self)
         {
