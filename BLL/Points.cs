@@ -24,5 +24,38 @@ namespace BLL
 
             return pointsList;
         }
+
+        public distroTrend.Model.Points GetPoints(string connectionString,int distroId, DateTime date)
+        {
+            DAL.Points objPoints = new DAL.Points();
+
+            distroTrend.Model.Points points = new distroTrend.Model.Points()
+            {
+                distroId = distroId,
+                Date = date
+            };
+
+            distroTrend.Model.Points pointsDb = objPoints.Select(connectionString, points);
+            
+            return pointsDb;
+        }
+        public int Insert(string connectionString, int distroId, DateTime date)
+        {
+            DAL.Points objVersion = new DAL.Points();
+
+            distroTrend.Model.Points points = new distroTrend.Model.Points()
+            {
+                distroId = distroId,
+                Date = date
+            };
+
+            return objVersion.Insert(connectionString, points);
+        }
+        public int Update(string connectionString, distroTrend.Model.Points points)
+        {
+            DAL.Points objVersion = new DAL.Points();
+
+            return objVersion.Update(connectionString, points);
+        }
     }
 }

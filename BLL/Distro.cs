@@ -12,11 +12,11 @@ namespace BLL
 
             return objDistro.GetDistro();
         }
-        public List<distroTrend.Model.Distro> GetDistro()
+        public List<distroTrend.Model.Distro> GetDistro(string sqlConn)
         {
             DAL.Distro objDistro = new DAL.Distro();
 
-            DataSet ds = objDistro.GetDistro();
+            DataSet ds = objDistro.GetDistro(sqlConn);
 
             var distroList = ds.Tables[0].AsEnumerable()
                 .Select(dataRow => new distroTrend.Model.Distro

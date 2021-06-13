@@ -6,6 +6,7 @@ namespace distroTrend.Model
     {
         public int distroId { get; set; }
         public DateTime Date { get; set; }
+        public decimal DistroWatchPoints { get; set; }
         public decimal TotalPoints { get; set; }
     }
 }

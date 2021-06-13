@@ -13,6 +13,12 @@ namespace DAL
             String query = "SELECT * FROM tbl_Distro";
             return conn.GetData(query);
         }
+        public DataSet GetDistro(string sqlConn)
+        {
+            DBConn conn = new DBConn();
+            String query = "SELECT * FROM tbl_Distro";
+            return conn.GetData(query, sqlConn);
+        }
 
         public DataSet GetDistro(string code, string sqlConn)
         {
@@ -21,7 +27,7 @@ namespace DAL
             return conn.GetData(query, sqlConn);
         }
 
-        public int Insert(string code, string name, string description, string homePage)
+        public int Insert(string sqlConn, string code, string name, string description, string homePage)
         {
             DBConn conn = new DBConn();
             String query = "INSERT INTO [dbo].[tbl_Distro] ([Code],[Name],[Description],[HomePage]) Values (@Code, @Name, @Description, @HomePage)";
@@ -34,7 +40,7 @@ namespace DAL
                 new SqlParameter() {ParameterName = "@HomePage", SqlDbType = SqlDbType.NVarChar, Value= homePage}
             };
 
-            return conn.InsertData(query, sp);
+            return conn.InsertData(sqlConn, query, sp);
         }
 
         public int Update(string connectionString, int id, string description)

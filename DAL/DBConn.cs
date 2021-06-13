@@ -41,15 +41,13 @@ namespace DAL
             return ds;
         }
 
-        public int InsertData(string query, List<SqlParameter> sp)
+        public int InsertData(string connectionString, string query, List<SqlParameter> sp)
         {
-            string connectionString;
             SqlConnection sqlConn;
             SqlCommand command;
             int result = 0;
 
-            connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
-
+            //connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
             sqlConn = new SqlConnection(connectionString);
 
             command = new SqlCommand(query, sqlConn);
