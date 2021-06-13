@@ -39,15 +39,9 @@ namespace BLL
             
             return pointsDb;
         }
-        public int Insert(string connectionString, int distroId, DateTime date)
+        public int Insert(string connectionString, distroTrend.Model.Points points)
         {
             DAL.Points objVersion = new DAL.Points();
-
-            distroTrend.Model.Points points = new distroTrend.Model.Points()
-            {
-                distroId = distroId,
-                Date = date
-            };
 
             return objVersion.Insert(connectionString, points);
         }

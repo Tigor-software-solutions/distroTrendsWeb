@@ -1,3 +1,5 @@
+use distroTrends
+
 SELECT *
 FROM tbl_distro
 
@@ -18,5 +20,6 @@ Inner Join tbl_DistroEdition D ON E.Id = D.EditionId
 Where D.DistroId = 3
 
 select * from tbl_Points
+Order by Date Desc;
 
 exec sp_CalculatePoints
