@@ -25,7 +25,7 @@ namespace BLL
             return pointsList;
         }
 
-        public distroTrend.Model.Points GetPoints(string connectionString,int distroId, DateTime date)
+        public distroTrend.Model.Points GetPoints(string connString, int distroId, DateTime date)
         {
             DAL.Points objPoints = new DAL.Points();
 
@@ -35,21 +35,21 @@ namespace BLL
                 Date = date
             };
 
-            distroTrend.Model.Points pointsDb = objPoints.Select(connectionString, points);
-            
+            distroTrend.Model.Points pointsDb = objPoints.Select(connString, points);
+
             return pointsDb;
         }
-        public int Insert(string connectionString, distroTrend.Model.Points points)
+        public int Insert(string connString, distroTrend.Model.Points points)
         {
             DAL.Points objVersion = new DAL.Points();
 
-            return objVersion.Insert(connectionString, points);
+            return objVersion.Insert(connString, points);
         }
-        public int Update(string connectionString, distroTrend.Model.Points points)
+        public int Update(string connString, distroTrend.Model.Points points)
         {
             DAL.Points objVersion = new DAL.Points();
 
-            return objVersion.Update(connectionString, points);
+            return objVersion.Update(connString, points);
         }
     }
 }

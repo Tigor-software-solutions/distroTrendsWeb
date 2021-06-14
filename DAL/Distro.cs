@@ -13,21 +13,21 @@ namespace DAL
             String query = "SELECT * FROM tbl_Distro";
             return conn.GetData(query);
         }
-        public DataSet GetDistro(string sqlConn)
+        public DataSet GetDistro(string connString)
         {
             DBConn conn = new DBConn();
             String query = "SELECT * FROM tbl_Distro";
-            return conn.GetData(query, sqlConn);
+            return conn.GetData(query, connString);
         }
 
-        public DataSet GetDistro(string code, string sqlConn)
+        public DataSet GetDistro(string connString, string code)
         {
             DBConn conn = new DBConn();
             String query = "SELECT * FROM tbl_Distro WHERE Code = '"+ code + "'";
-            return conn.GetData(query, sqlConn);
+            return conn.GetData(query, connString);
         }
 
-        public int Insert(string sqlConn, string code, string name, string description, string homePage)
+        public int Insert(string connString, string code, string name, string description, string homePage)
         {
             DBConn conn = new DBConn();
             String query = "INSERT INTO [dbo].[tbl_Distro] ([Code],[Name],[Description],[HomePage]) Values (@Code, @Name, @Description, @HomePage)";
@@ -40,10 +40,10 @@ namespace DAL
                 new SqlParameter() {ParameterName = "@HomePage", SqlDbType = SqlDbType.NVarChar, Value= homePage}
             };
 
-            return conn.InsertData(sqlConn, query, sp);
+            return conn.InsertData(connString, query, sp);
         }
 
-        public int Update(string connectionString, int id, string description)
+        public int Update(string connString, int id, string description)
         {
             DBConn conn = new DBConn();
             String query = "UPDATE [dbo].[tbl_Distro] SET [Description] = @Description WHERE Id = @Id";
@@ -54,10 +54,10 @@ namespace DAL
                 new SqlParameter() {ParameterName = "@Description", SqlDbType = SqlDbType.NVarChar, Value= description}
             };
 
-            return conn.UpdateData(connectionString, query, sp);
+            return conn.UpdateData(connString, query, sp);
         }
 
-        public int Update(string connectionString, int id, distroTrend.Model.Distro distro)
+        public int Update(string connString, int id, distroTrend.Model.Distro distro)
         {
             DBConn conn = new DBConn();
             String query = "UPDATE [dbo].[tbl_Distro] SET [Description] = @Description, ImageURL = @ImageURL WHERE Id = @Id";
@@ -69,7 +69,7 @@ namespace DAL
                 new SqlParameter() {ParameterName = "@ImageURL", SqlDbType = SqlDbType.NVarChar, Value= distro.ImageURL}
             };
 
-            return conn.UpdateData(connectionString, query, sp);
+            return conn.UpdateData(connString, query, sp);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DAL
             String query = "SELECT * FROM tbl_Points";
             return conn.GetData(query);
         }
-        public distroTrend.Model.Points Select(string connectionString, distroTrend.Model.Points points)
+        public distroTrend.Model.Points Select(string connString, distroTrend.Model.Points points)
         {
             DBConn conn = new DBConn();
             String query = "SELECT * FROM [dbo].[tbl_Points] WHERE distroId = @distroId and Date = @Date";
@@ -27,7 +27,7 @@ namespace DAL
                 new SqlParameter() {ParameterName = "@Date", SqlDbType = SqlDbType.Decimal, Value= points.Date}
             };
 
-            DataSet ds = conn.GetData(connectionString, query);
+            DataSet ds = conn.GetData(connString, query);
 
             objPoints = ds.Tables[0].AsEnumerable()
                 .Select(dataRow => new distroTrend.Model.Points
@@ -40,7 +40,7 @@ namespace DAL
 
             return objPoints;
         }
-        public int Insert(string connectionString, distroTrend.Model.Points points)
+        public int Insert(string connString, distroTrend.Model.Points points)
         {
             DBConn conn = new DBConn();
             String query = "INSERT INTO [dbo].[tbl_Points] ([distroId],[DistroWatchPoints]) VALUES (@distroId,@DistroWatchPoints)";
@@ -51,9 +51,9 @@ namespace DAL
                 new SqlParameter() {ParameterName = "@DistroWatchPoints", SqlDbType = SqlDbType.Decimal, Value= points.DistroWatchPoints}
             };
 
-            return conn.InsertData(connectionString, query, sp);
+            return conn.InsertData(connString, query, sp);
         }
-        public int Update(string connectionString, distroTrend.Model.Points points)
+        public int Update(string connString, distroTrend.Model.Points points)
         {
             DBConn conn = new DBConn();
             String query = "UPDATE [dbo].[tbl_Points] SET [DistroWatchPoints] = @DistroWatchPoints WHERE distroId = @distroId";
@@ -64,7 +64,7 @@ namespace DAL
                 new SqlParameter() {ParameterName = "@DistroWatchPoints", SqlDbType = SqlDbType.Decimal, Value= points.DistroWatchPoints}
             };
 
-            return conn.UpdateData(connectionString, query, sp);
+            return conn.UpdateData(connString, query, sp);
         }
     }
 }

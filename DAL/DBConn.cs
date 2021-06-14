@@ -41,14 +41,13 @@ namespace DAL
             return ds;
         }
 
-        public int InsertData(string connectionString, string query, List<SqlParameter> sp)
+        public int InsertData(string connString, string query, List<SqlParameter> sp)
         {
             SqlConnection sqlConn;
             SqlCommand command;
             int result = 0;
 
-            //connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
-            sqlConn = new SqlConnection(connectionString);
+            sqlConn = new SqlConnection(connString);
 
             command = new SqlCommand(query, sqlConn);
 
@@ -72,7 +71,7 @@ namespace DAL
             return result;
         }
 
-        public int UpdateData(string connectionString, string query, List<SqlParameter> sp)
+        public int UpdateData(string connString, string query, List<SqlParameter> sp)
         {
             SqlConnection sqlConn;
             SqlCommand command;
@@ -80,7 +79,7 @@ namespace DAL
 
             //connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
 
-            sqlConn = new SqlConnection(connectionString);
+            sqlConn = new SqlConnection(connString);
 
             command = new SqlCommand(query, sqlConn);
 

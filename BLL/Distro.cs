@@ -32,11 +32,11 @@ namespace BLL
             return distroList;
         }
 
-        public distroTrend.Model.Distro GetDistro(string code, string sqlConn)
+        public distroTrend.Model.Distro GetDistro(string connString, string code)
         {
             DAL.Distro objDistro = new DAL.Distro();
 
-            DataSet ds = objDistro.GetDistro(code, sqlConn);
+            DataSet ds = objDistro.GetDistro(connString, code);
 
             var distroList = ds.Tables[0].AsEnumerable()
                 .Select(dataRow => new distroTrend.Model.Distro
@@ -52,18 +52,18 @@ namespace BLL
             return distroList;
         }
 
-        public int Update(string connectionString, int id, string description)
+        public int Update(string connString, int id, string description)
         {
             DAL.Distro objDistro = new DAL.Distro();
 
-            return objDistro.Update(connectionString, id, description);
+            return objDistro.Update(connString, id, description);
         }
 
-        public int Update(string connectionString, int id, distroTrend.Model.Distro distro)
+        public int Update(string connString, int id, distroTrend.Model.Distro distro)
         {
             DAL.Distro objDistro = new DAL.Distro();
 
-            return objDistro.Update(connectionString, id, distro);
+            return objDistro.Update(connString, id, distro);
         }
     }
 }
