@@ -18,7 +18,7 @@ namespace BLL
                 {
                     distroId = dataRow.Field<int>("distroId"),
                     Date = dataRow.Field<DateTime>("Date"),
-                    TotalPoints = dataRow.Field<decimal>("TotalPoints")
+                    TotalPoints = dataRow["TotalPoints"] == DBNull.Value ? 0 : dataRow.Field<decimal>("TotalPoints")
 
                 }).ToList();
 

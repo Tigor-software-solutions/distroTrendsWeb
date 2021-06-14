@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
-using System.Reflection;
 
 namespace distroTrend
 {
@@ -17,10 +16,17 @@ namespace distroTrend
         {
             logger.Trace("Inside " + this.GetType().Name + ".Page_Load()");
 
-            string _connString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
+            try
+            {
+                string _connString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
 
-            gvMain.DataSource = GetDistros();
-            gvMain.DataBind();
+                gvMain.DataSource = GetDistros();
+                gvMain.DataBind();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Exception occured Home.Page_Load ");
+            }
         }
         private DataTable GetDistros()
         {
