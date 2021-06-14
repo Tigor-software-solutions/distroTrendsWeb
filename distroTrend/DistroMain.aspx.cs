@@ -2,6 +2,7 @@
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 
@@ -17,6 +18,8 @@ namespace distroTrend
             int distroId = 0;
             Distro distro = null;
 
+            string connString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
+
             if (Request.QueryString[Helper.Constants.URL_PARAMETER_DISTRO_ID] != null)
                 distroId = Convert.ToInt32(Request.QueryString[Helper.Constants.URL_PARAMETER_DISTRO_ID].ToString());
 
@@ -25,7 +28,7 @@ namespace distroTrend
             BLL.Distro objDistro = new BLL.Distro();
 
             if (distroId > 0)
-                distro = objDistro.GetDistro().Where(x => x.Id == distroId).SingleOrDefault();
+                distro = objDistro.GetDistro(connString).Where(x => x.Id == distroId).SingleOrDefault();
 
             if (distro != null)
             {
