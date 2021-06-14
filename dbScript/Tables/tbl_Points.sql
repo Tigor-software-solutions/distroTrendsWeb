@@ -1,6 +1,6 @@
 CREATE TABLE [dbo].[tbl_Points](
 	[distroId] [int] NOT NULL,
-	[Date] [datetime] NULL,
+	[Date] [date] NULL,
 	[GoogleTrendsPoints] [decimal](18, 2) NULL,
 	[GoogleTrendsPointsFinal] [decimal](18, 2) NULL,
 	[GoogleTrendsWeightage] [decimal](18, 2) NULL,

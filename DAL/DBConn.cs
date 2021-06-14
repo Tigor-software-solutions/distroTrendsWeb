@@ -8,7 +8,7 @@ namespace DAL
 {
     public class DBConn
     {
-        public DataSet GetData(string query, string connString = null)
+        public DataSet GetData(string connString, string query, List<SqlParameter> sp = null)
         {
             string connectionString = null;
             SqlConnection sqlConn;
@@ -16,8 +16,8 @@ namespace DAL
             DataSet ds = new DataSet();
 
             connectionString = connString;
-            
-            if (connectionString == null)
+
+            if (string.IsNullOrEmpty(connectionString))
                 connectionString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
 
             sqlConn = new SqlConnection(connectionString);
@@ -27,6 +27,10 @@ namespace DAL
                 sqlConn.Open();
 
                 adapter = new SqlDataAdapter(query, connectionString);
+
+                if (sp != null)
+                    adapter.SelectCommand.Parameters.AddRange(sp.ToArray());
+
                 adapter.Fill(ds);
             }
             catch (Exception ex)
@@ -87,7 +91,7 @@ namespace DAL
             {
                 //command.Parameters.AddRange(sp.ToArray());
 
-                foreach(SqlParameter param in sp)
+                foreach (SqlParameter param in sp)
                 {
                     if (param.Value != null)
                         command.Parameters.Add(param);

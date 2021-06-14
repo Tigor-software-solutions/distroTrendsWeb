@@ -7,23 +7,23 @@ namespace DAL
 {
     public class Distro
     {
-        public DataSet GetDistro()
-        {
-            DBConn conn = new DBConn();
-            String query = "SELECT * FROM tbl_Distro";
-            return conn.GetData(query);
-        }
+        //public DataSet GetDistro()
+        //{
+        //    DBConn conn = new DBConn();
+        //    String query = "SELECT * FROM tbl_Distro";
+        //    return conn.GetData(query);
+        //}
         public DataSet GetDistro(string connString)
         {
             DBConn conn = new DBConn();
             String query = "SELECT * FROM tbl_Distro";
-            return conn.GetData(query, connString);
+            return conn.GetData(connString, query);
         }
 
         public DataSet GetDistro(string connString, string code)
         {
             DBConn conn = new DBConn();
-            String query = "SELECT * FROM tbl_Distro WHERE Code = '"+ code + "'";
+            String query = "SELECT * FROM tbl_Distro WHERE Code = '" + code + "'";
             return conn.GetData(query, connString);
         }
 
@@ -31,7 +31,7 @@ namespace DAL
         {
             DBConn conn = new DBConn();
             String query = "INSERT INTO [dbo].[tbl_Distro] ([Code],[Name],[Description],[HomePage]) Values (@Code, @Name, @Description, @HomePage)";
-           
+
             List<SqlParameter> sp = new List<SqlParameter>()
             {
                 new SqlParameter() {ParameterName = "@Code", SqlDbType = SqlDbType.NVarChar, Value= code},

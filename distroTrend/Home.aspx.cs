@@ -2,6 +2,7 @@
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Reflection;
@@ -11,9 +12,13 @@ namespace distroTrend
     public partial class Home : System.Web.UI.Page
     {
         static Logger logger = LogManager.GetCurrentClassLogger();
+        string _connString = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             logger.Trace("Inside " + this.GetType().Name + ".Page_Load()");
+
+            string _connString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
+
             gvMain.DataSource = GetDistros();
             gvMain.DataBind();
         }
@@ -55,7 +60,7 @@ namespace distroTrend
             DataSet ds = new DataSet();
 
             BLL.Distro distro = new BLL.Distro();
-            ds = distro.GetDistroAsDataSet();
+            ds = distro.GetDistroAsDataSet(_connString);
 
             DataTable dt = GetDistroRanking(ds.Tables[0]);
 
@@ -69,7 +74,7 @@ namespace distroTrend
 
             BLL.Points objPoints = new BLL.Points();
             List<distroTrend.Model.Points> listPoints;
-            listPoints = objPoints.GetPoints();
+            listPoints = objPoints.GetPoints(_connString);
 
             dt.Columns.Add(Points, typeof(Decimal)).SetOrdinal(2);
 

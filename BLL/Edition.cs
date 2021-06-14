@@ -6,11 +6,11 @@ namespace BLL
 {
     public class Edition
     {
-        public List<distroTrend.Model.Edition> GetEditions(int distroId)
+        public List<distroTrend.Model.Edition> GetEditions(string connString, int distroId)
         {
             DAL.Edition objEdition = new DAL.Edition();
 
-            DataSet ds = objEdition.GetEdition(distroId);
+            DataSet ds = objEdition.GetEdition(connString, distroId);
 
             var editionList = ds.Tables[0].AsEnumerable()
                 .Select(dataRow => new distroTrend.Model.Edition

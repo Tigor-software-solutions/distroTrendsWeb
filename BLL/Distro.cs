@@ -6,17 +6,17 @@ namespace BLL
 {
     public class Distro
     {
-        public DataSet GetDistroAsDataSet()
+        public DataSet GetDistroAsDataSet(string connString)
         {
             DAL.Distro objDistro = new DAL.Distro();
 
-            return objDistro.GetDistro();
+            return objDistro.GetDistro(connString);
         }
-        public List<distroTrend.Model.Distro> GetDistro(string sqlConn)
+        public List<distroTrend.Model.Distro> GetDistro(string connString)
         {
             DAL.Distro objDistro = new DAL.Distro();
 
-            DataSet ds = objDistro.GetDistro(sqlConn);
+            DataSet ds = objDistro.GetDistro(connString);
 
             var distroList = ds.Tables[0].AsEnumerable()
                 .Select(dataRow => new distroTrend.Model.Distro

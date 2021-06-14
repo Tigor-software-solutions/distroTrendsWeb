@@ -20,6 +20,9 @@ Inner Join tbl_DistroEdition D ON E.Id = D.EditionId
 Where D.DistroId = 3
 
 select * from tbl_Points
+where distroId = 1
 Order by Date Desc;
+
+--truncate table tbl_Points
 
 exec sp_CalculatePoints

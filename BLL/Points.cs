@@ -7,11 +7,11 @@ namespace BLL
 {
     public class Points
     {
-        public List<distroTrend.Model.Points> GetPoints()
+        public List<distroTrend.Model.Points> GetPoints(string connString)
         {
-            DAL.Points objVersion = new DAL.Points();
+            DAL.Points objPoints = new DAL.Points();
 
-            DataSet ds = objVersion.GetPoints();
+            DataSet ds = objPoints.GetPoints(connString);
 
             var pointsList = ds.Tables[0].AsEnumerable()
                 .Select(dataRow => new distroTrend.Model.Points
@@ -25,9 +25,10 @@ namespace BLL
             return pointsList;
         }
 
-        public distroTrend.Model.Points GetPoints(string connString, int distroId, DateTime date)
+        public bool IsExists(string connString, int distroId, DateTime date)
         {
             DAL.Points objPoints = new DAL.Points();
+            bool isExists = false;
 
             distroTrend.Model.Points points = new distroTrend.Model.Points()
             {
@@ -37,7 +38,10 @@ namespace BLL
 
             distroTrend.Model.Points pointsDb = objPoints.Select(connString, points);
 
-            return pointsDb;
+            if (pointsDb != null)
+                isExists = true;
+
+            return isExists;
         }
         public int Insert(string connString, distroTrend.Model.Points points)
         {

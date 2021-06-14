@@ -5,11 +5,11 @@ namespace DAL
 {
     public class Edition
     {
-        public DataSet GetEdition(int distroId)
+        public DataSet GetEdition(string connString, int distroId)
         {
             DBConn conn = new DBConn();
             String query = "SELECT * FROM tbl_Edition E Inner Join tbl_DistroEdition D ON E.Id = D.EditionId Where D.DistroId = " + distroId;
-            return conn.GetData(query);
+            return conn.GetData(connString, query);
         }
     }
 }

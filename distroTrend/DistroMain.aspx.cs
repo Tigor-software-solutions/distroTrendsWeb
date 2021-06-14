@@ -12,13 +12,14 @@ namespace distroTrend
         : System.Web.UI.Page
     {
         static Logger logger = LogManager.GetCurrentClassLogger();
+        string _connString = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             logger.Trace("Inside " + this.GetType().Name + ".Page_Load()");
             int distroId = 0;
             Distro distro = null;
 
-            string connString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
+            string _connString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
 
             if (Request.QueryString[Helper.Constants.URL_PARAMETER_DISTRO_ID] != null)
                 distroId = Convert.ToInt32(Request.QueryString[Helper.Constants.URL_PARAMETER_DISTRO_ID].ToString());
@@ -28,7 +29,7 @@ namespace distroTrend
             BLL.Distro objDistro = new BLL.Distro();
 
             if (distroId > 0)
-                distro = objDistro.GetDistro(connString).Where(x => x.Id == distroId).SingleOrDefault();
+                distro = objDistro.GetDistro(_connString).Where(x => x.Id == distroId).SingleOrDefault();
 
             if (distro != null)
             {
@@ -69,13 +70,13 @@ namespace distroTrend
         private List<distroTrend.Model.Edition> GetEditions(int distroId)
         {
             BLL.Edition objEdition = new BLL.Edition();
-            List<distroTrend.Model.Edition> editions = objEdition.GetEditions(distroId).ToList();
+            List<distroTrend.Model.Edition> editions = objEdition.GetEditions(_connString, distroId).ToList();
             return editions;
         }
         private List<distroTrend.Model.Version> GetVersions(int distroId)
         {
             BLL.Version objVersion = new BLL.Version();
-            List<distroTrend.Model.Version> versions = objVersion.GetVersions(distroId).ToList();
+            List<distroTrend.Model.Version> versions = objVersion.GetVersions(_connString, distroId).ToList();
             return versions;
         }
     }

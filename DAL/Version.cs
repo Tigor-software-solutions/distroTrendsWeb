@@ -5,11 +5,11 @@ namespace DAL
 {
     public class Version
     {
-        public DataSet GetVersion()
+        public DataSet GetVersion(string connString)
         {
             DBConn conn = new DBConn();
             String query = "SELECT * FROM tbl_Version";
-            return conn.GetData(query);
+            return conn.GetData(connString, query);
         }
     }
 }

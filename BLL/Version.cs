@@ -6,11 +6,11 @@ namespace BLL
 {
     public class Version
     {
-        public List<distroTrend.Model.Version> GetVersions(int distroId)
+        public List<distroTrend.Model.Version> GetVersions(string connString, int distroId)
         {
             DAL.Version objVersion = new DAL.Version();
 
-            DataSet ds = objVersion.GetVersion();
+            DataSet ds = objVersion.GetVersion(connString);
 
             var versionList = ds.Tables[0].AsEnumerable()
                 .Select(dataRow => new distroTrend.Model.Version

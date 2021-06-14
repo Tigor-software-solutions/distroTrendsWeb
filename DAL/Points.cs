@@ -8,11 +8,11 @@ namespace DAL
 {
     public class Points
     {
-        public DataSet GetPoints()
+        public DataSet GetPoints(string connString)
         {
             DBConn conn = new DBConn();
             String query = "SELECT * FROM tbl_Points";
-            return conn.GetData(query);
+            return conn.GetData(connString, query);
         }
         public distroTrend.Model.Points Select(string connString, distroTrend.Model.Points points)
         {
@@ -24,18 +24,17 @@ namespace DAL
             List<SqlParameter> sp = new List<SqlParameter>()
             {
                 new SqlParameter() {ParameterName = "@distroId", SqlDbType = SqlDbType.Int, Value= points.distroId},
-                new SqlParameter() {ParameterName = "@Date", SqlDbType = SqlDbType.Decimal, Value= points.Date}
+                new SqlParameter() {ParameterName = "@Date", SqlDbType = SqlDbType.DateTime, Value= points.Date.Date}
             };
 
-            DataSet ds = conn.GetData(connString, query);
+            DataSet ds = conn.GetData(connString, query, sp);
 
             objPoints = ds.Tables[0].AsEnumerable()
                 .Select(dataRow => new distroTrend.Model.Points
                 {
                     distroId = dataRow.Field<int>("distroId"),
                     Date = dataRow.Field<DateTime>("Date"),
-                    TotalPoints = dataRow.Field<decimal>("TotalPoints")
-
+                    TotalPoints = dataRow["TotalPoints"] == DBNull.Value ? 0 : dataRow.Field<decimal>("TotalPoints")
                 }).FirstOrDefault();
 
             return objPoints;
