@@ -42,7 +42,7 @@ BEGIN
 		SET @GoogleTrendsWeightage = @GoogleTrendsPointsFinal * 0.7;
 		SET @DistroWatchPointsFinal = @DistroWatchPoints * 0.1;
 		SET @DistroWatchWeightage = @DistroWatchPointsFinal * 0.3;
-		SET @TotalPoints = @GoogleTrendsWeightage + @DistroWatchWeightage;
+		SET @TotalPoints = ISNULL(@GoogleTrendsWeightage, 0) + ISNULL(@DistroWatchWeightage, 0);
 
 		UPDATE tbl_Points
 		SET GoogleTrendsPointsFinal = @GoogleTrendsPointsFinal
