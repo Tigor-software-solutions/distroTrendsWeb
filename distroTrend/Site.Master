@@ -9,7 +9,7 @@
     <meta name="description" content="Find best linux distros"/>
     <meta name="keywords" content="distroTrends, linux, distro, ubuntu">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> distroTrends</title>
+    <title><%: Page.Title %> <%: Helper.Constants.PROJECT_NAME%></title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -57,7 +57,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">distro Trends</a>
+                    <a class="navbar-brand" runat="server" href="~/"><%: Helper.Constants.PROJECT_NAME%></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -73,7 +73,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - distroTrends</p>
+                <p>&copy; <%: DateTime.Now.Year %> - <%: Helper.Constants.PROJECT_NAME%></p>
             </footer>
         </div>
 
