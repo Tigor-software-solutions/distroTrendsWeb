@@ -1,0 +1,5 @@
+truncate table tbl_DistroEdition
+truncate table tbl_Distro
+truncate table tbl_Edition
+truncate table tbl_Version
+truncate table tbl_UserType
