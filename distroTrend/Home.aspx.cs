@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Web.Script.Serialization;
 
 namespace distroTrend
 {
@@ -19,6 +22,11 @@ namespace distroTrend
             try
             {
                 string _connString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
+
+                ddlUserType.DataSource = GetUserTypes();
+                ddlUserType.DataTextField = "Name";
+                ddlUserType.DataValueField = "Id";
+                ddlUserType.DataBind();
 
                 gvMain.DataSource = GetDistros();
                 gvMain.DataBind();
@@ -142,5 +150,40 @@ namespace distroTrend
             gvMain.PageIndex = e.NewPageIndex;
             gvMain.DataBind();
         }
+
+        private List<UserType> GetUserTypes()
+        {
+            List<UserType> userTypes = new List<UserType>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8090/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //GET Method
+                HttpResponseMessage response = client.GetAsync("api/userType/").Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonString = response.Content.ReadAsStringAsync().Result;
+                    logger.Debug("jsonString=" + jsonString);
+                    userTypes = (new JavaScriptSerializer()).Deserialize<List<UserType>>(jsonString);
+                }
+                else
+                {
+                    Console.WriteLine("Internal server Error");
+                }
+            }
+
+            return userTypes;
+        }
+    }
+
+    public class UserType
+    {
+        public int Id { get; set; }
+        public string Code { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }
