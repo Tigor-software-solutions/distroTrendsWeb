@@ -8,6 +8,9 @@
         }
     </style>
     <div>
+        <span>The Top 5 distros for <asp:DropDownList ID="ddlUserType" runat="server"></asp:DropDownList> are:-</span>
+    </div>
+    <div>
         <br />
         <asp:GridView ID="gvMain" runat="server" CssClass="table" AutoGenerateColumns="false" AllowPaging="true" OnPageIndexChanging="gvMain_PageIndexChanging">
             <Columns>
