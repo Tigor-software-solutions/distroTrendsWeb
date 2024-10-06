@@ -9,5 +9,7 @@ sqlcmd -S %server % -d %database % -i Tables\tbl_Edition.sql -o Output\tbl_Editi
 
 sqlcmd -S %server % -d %database % -i Tables\tbl_Version.sql -o Output\tbl_Version.txt
 
+sqlcmd -S %server % -d %database % -i Tables\tbl_UserType.sql -o Output\tbl_UserType.txt
+
 pause
 echo Execution complete, please check output.txt for results.
