@@ -17,7 +17,7 @@ BEGIN
 		'UBUNTU'
 		,'Ubuntu'
 		,'Ubuntu Desc'
-		,'ubuntu.com'
+		,'https://ubuntu.com'
 		)
 END
 GO
