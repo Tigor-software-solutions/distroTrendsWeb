@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Script.Serialization;
+using static System.Net.WebRequestMethods;
 
 namespace distroTrend
 {
@@ -154,24 +155,34 @@ namespace distroTrend
         private List<UserType> GetUserTypes()
         {
             List<UserType> userTypes = new List<UserType>();
+            string webServiceUrl = "http://localhost:8090/";
 
-            using (var client = new HttpClient())
+            try
             {
-                client.BaseAddress = new Uri("http://localhost:8090/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                //GET Method
-                HttpResponseMessage response = client.GetAsync("api/userType/").Result;
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(webServiceUrl);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    //GET Method
+                    HttpResponseMessage response = client.GetAsync("api/userType/").Result;
 
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonString = response.Content.ReadAsStringAsync().Result;
-                    logger.Debug("jsonString=" + jsonString);
-                    userTypes = (new JavaScriptSerializer()).Deserialize<List<UserType>>(jsonString);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string jsonString = response.Content.ReadAsStringAsync().Result;
+                        logger.Debug("jsonString=" + jsonString);
+                        userTypes = (new JavaScriptSerializer()).Deserialize<List<UserType>>(jsonString);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Internal server Error");
+                    }
                 }
-                else
+            }
+            catch (Exception ex)
+            {
                 {
-                    Console.WriteLine("Internal server Error");
+                    logger.Error(ex, "Exception occured while calling API - " + webServiceUrl);
                 }
             }
 
