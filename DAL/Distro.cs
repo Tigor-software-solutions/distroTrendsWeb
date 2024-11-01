@@ -24,20 +24,21 @@ namespace DAL
         {
             DBConn conn = new DBConn();
             String query = "SELECT * FROM tbl_Distro WHERE Code = '" + code + "'";
-            return conn.GetData(query, connString);
+            return conn.GetData(connString, query);
         }
 
-        public int Insert(string connString, string code, string name, string description, string homePage)
+        public int Insert(string connString, string code, string name, string description, string imageURL, string homePage)
         {
             DBConn conn = new DBConn();
-            String query = "INSERT INTO [dbo].[tbl_Distro] ([Code],[Name],[Description],[HomePage]) Values (@Code, @Name, @Description, @HomePage)";
+            String query = "INSERT INTO [dbo].[tbl_Distro] ([Code],[Name],[Description],[ImageURL],[HomePage]) Values (@Code, @Name, @Description, @ImageURL, @HomePage)";
 
             List<SqlParameter> sp = new List<SqlParameter>()
             {
                 new SqlParameter() {ParameterName = "@Code", SqlDbType = SqlDbType.NVarChar, Value= code},
                 new SqlParameter() {ParameterName = "@Name", SqlDbType = SqlDbType.NVarChar, Value= name},
-                new SqlParameter() {ParameterName = "@Description", SqlDbType = SqlDbType.NVarChar, Value= description},
-                new SqlParameter() {ParameterName = "@HomePage", SqlDbType = SqlDbType.NVarChar, Value= homePage}
+                new SqlParameter() {ParameterName = "@Description", SqlDbType = SqlDbType.NVarChar, Value= description ?? (object)DBNull.Value},
+                new SqlParameter() {ParameterName = "@ImageURL", SqlDbType = SqlDbType.NVarChar, Value= imageURL ?? (object)DBNull.Value },
+                new SqlParameter() {ParameterName = "@HomePage", SqlDbType = SqlDbType.NVarChar, Value= homePage ?? (object)DBNull.Value }
             };
 
             return conn.InsertData(connString, query, sp);
