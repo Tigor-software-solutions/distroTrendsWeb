@@ -2,7 +2,7 @@ CREATE TABLE [dbo].[tbl_Distro](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Code] [varchar](8) NOT NULL,
 	[Name] [varchar](20) NOT NULL,
-	[Description] [varchar](50) NULL,
+	[Description] [varchar](500) NULL,
 	[ImageURL] [varchar](50) NULL,
 	[HomePage] [varchar](50) NULL,
  CONSTRAINT [PK_tbl_Distro] PRIMARY KEY CLUSTERED 
