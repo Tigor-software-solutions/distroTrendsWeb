@@ -11,5 +11,7 @@ sqlcmd -S %server % -d %database % -i Tables\tbl_Version.sql -o Output\tbl_Versi
 
 sqlcmd -S %server % -d %database % -i Tables\tbl_UserType.sql -o Output\tbl_UserType.txt
 
+sqlcmd -S %server % -d %database % -i Tables\tbl_User.sql -o Output\tbl_User.txt
+
 pause
 echo Execution complete, please check output.txt for results.
