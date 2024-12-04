@@ -60,7 +60,7 @@ namespace DAL
         public int Update(string connString, int id, distroTrend.Model.Distro distro)
         {
             DBConn conn = new DBConn();
-            String query = "UPDATE [dbo].[tbl_Distro] SET [Description] = @Description, ImageURL = @ImageURL WHERE Id = @Id";
+            String query = "UPDATE [dbo].[tbl_Distro] SET [Description] = IsNull(@Description, [Description]), ImageURL = IsNull(@ImageURL, ImageURL) WHERE Id = @Id";
 
             List<SqlParameter> sp = new List<SqlParameter>()
             {
