@@ -1,5 +1,4 @@
-set server = "236PCWIN11\SQLEXPRESS"
-set database = "distroTrends"
+call "00_Config.bat"
 
 mkdir Output
 
