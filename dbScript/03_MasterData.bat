@@ -1,5 +1,5 @@
-set server = "236PCWIN11\SQLEXPRESS"
-set database = "distroTrends"
+call "00_Config.bat"
+
 set folderInput = Tables\MasterData\
 set folderOutput = Output\MasterData\
 
