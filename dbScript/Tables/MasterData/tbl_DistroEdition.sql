@@ -6,19 +6,19 @@ CREATE TABLE #myTable (
 --Insert data into Temporary Tables    
 INSERT INTO #myTable
 VALUES (
-	'Mint'
+	'LINUXMIN'
 	,'Cinnamon'
 	);
 
 INSERT INTO #myTable
 VALUES (
-	'Mint'
+	'LINUXMIN'
 	,'MATE'
 	);
 
 INSERT INTO #myTable
 VALUES (
-	'Mint'
+	'LINUXMIN'
 	,'Xfce'
 	);
 

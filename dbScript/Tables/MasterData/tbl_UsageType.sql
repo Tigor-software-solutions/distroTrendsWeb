@@ -1,10 +1,10 @@
 IF NOT EXISTS (
 		SELECT *
-		FROM tbl_UserType
+		FROM tbl_UsageType
 		WHERE Code = 'SD'
 		)
 BEGIN
-	INSERT INTO [dbo].[tbl_UserType] (
+	INSERT INTO [dbo].[tbl_UsageType] (
 		[Code]
 		,[Name]
 		,[Description]
@@ -19,11 +19,11 @@ GO
 
 IF NOT EXISTS (
 		SELECT *
-		FROM tbl_UserType
+		FROM tbl_UsageType
 		WHERE Code = 'HU'
 		)
 BEGIN
-	INSERT INTO [dbo].[tbl_UserType] (
+	INSERT INTO [dbo].[tbl_UsageType] (
 		[Code]
 		,[Name]
 		,[Description]
@@ -38,11 +38,11 @@ GO
 
 IF NOT EXISTS (
 		SELECT *
-		FROM tbl_UserType
+		FROM tbl_UsageType
 		WHERE Code = 'S'
 		)
 BEGIN
-	INSERT INTO [dbo].[tbl_UserType] (
+	INSERT INTO [dbo].[tbl_UsageType] (
 		[Code]
 		,[Name]
 		,[Description]
@@ -57,11 +57,11 @@ GO
 
 IF NOT EXISTS (
 		SELECT *
-		FROM tbl_UserType
+		FROM tbl_UsageType
 		WHERE Code = 'Pro'
 		)
 BEGIN
-	INSERT INTO [dbo].[tbl_UserType] (
+	INSERT INTO [dbo].[tbl_UsageType] (
 		[Code]
 		,[Name]
 		,[Description]
