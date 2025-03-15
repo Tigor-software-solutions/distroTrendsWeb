@@ -1,5 +1,7 @@
-REM set server = "236PCWIN11\SQLEXPRESS"
+REM set server = "236ltAGWin11\SQLEXPRESS"
 set server = "236ltAGWin11\SQLEXPRESS"
-set database = "distroTrends"
+set database = "distroTrends_Test"
+set username = "sa"
+set password = "*******"
 
 echo Config Setting done...
