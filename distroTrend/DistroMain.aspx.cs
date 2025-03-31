@@ -22,16 +22,11 @@ namespace distroTrend
 
             string _connString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
 
-            //here 
-
             if (!IsPostBack) // Ensures dropdown is only populated once
             {
                 PopulateDropdown();  // Populate the dropdown with distro data
                 SelectDistroFromQueryString(); // Select the appropriate distro
             }
-
-            //to 
-
 
             if (Request.QueryString[Helper.Constants.URL_PARAMETER_DISTRO_ID] != null)
                 distroId = Convert.ToInt32(Request.QueryString[Helper.Constants.URL_PARAMETER_DISTRO_ID].ToString());
@@ -78,7 +73,7 @@ namespace distroTrend
                 }
             }
         }
-        // here 
+
         private void PopulateDropdown()
         {
             BLL.Distro objDistro = new BLL.Distro();
@@ -157,7 +152,6 @@ namespace distroTrend
             }
         }
 
-        //to
         private List<distroTrend.Model.Edition> GetEditions(int distroId)
         {
             BLL.Edition objEdition = new BLL.Edition();
