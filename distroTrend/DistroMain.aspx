@@ -2,6 +2,8 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <label for="ddlDistro">The selected distro is :</label>
+    <asp:DropDownList ID="ddlDistro" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDistro_SelectedIndexChanged"></asp:DropDownList>
     <div>
         <br />
         <br />
