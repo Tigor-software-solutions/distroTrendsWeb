@@ -18,5 +18,7 @@ sqlcmd -S %server % -d %database % -U %username % -P %password % -i Tables\tbl_U
 
 sqlcmd -S %server % -d %database % -U %username % -P %password % -i Tables\tbl_Version.sql -o Output\tbl_Version.txt
 
+sqlcmd -S %server % -d %database % -i Tables\tbl_User.sql -o Output\tbl_User.txt
+
 pause
 echo Execution complete, please check output.txt for results.
