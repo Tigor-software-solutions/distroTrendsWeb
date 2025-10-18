@@ -1,3 +1,0 @@
-sqlcmd -S 236PCWIN11\SQLEXPRESS -i CreateDb.sql -o output.txt
-pause
-echo Now about to end...

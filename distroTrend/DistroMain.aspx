@@ -2,8 +2,13 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <label for="ddlDistro">The selected distro is :</label>
+    <asp:DropDownList ID="ddlDistro" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDistro_SelectedIndexChanged"></asp:DropDownList>
     <div>
         <br />
+        <asp:Button ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" class="btn btn-primary"></asp:Button>
+        <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" Visible="false" class="btn btn-primary"></asp:Button>
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" Visible="false" class="btn btn-default"></asp:Button>
         <br />
         <dl class="dl-horizontal">
             <dt>Name</dt>
@@ -15,12 +20,16 @@
         <dl class="dl-horizontal">
             <dt>Description</dt>
             <dd>
-                <asp:Label ID="lblDescription" runat="server"></asp:Label></dd>
+                <asp:Label ID="lblDescription" runat="server"></asp:Label>
+                <asp:TextBox ID="txtDescription" runat="server" Visible="false"></asp:TextBox>
+            </dd>
         </dl>
         <dl class="dl-horizontal">
             <dt>URL</dt>
             <dd>
-                <asp:HyperLink ID="hlUrl" runat="server" Target="_blank"></asp:HyperLink></dd>
+                <asp:HyperLink ID="hlUrl" runat="server" Target="_blank"></asp:HyperLink>
+                <asp:TextBox ID="txtUrl" runat="server" Visible="false"></asp:TextBox>
+            </dd>
         </dl>
         <dl class="dl-horizontal">
             <dt></dt>

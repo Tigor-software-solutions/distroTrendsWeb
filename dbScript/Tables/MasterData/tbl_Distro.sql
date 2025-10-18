@@ -1,6 +1,3 @@
-USE [distroTrends]
-GO
-
 IF NOT EXISTS (
 		SELECT *
 		FROM tbl_Distro
