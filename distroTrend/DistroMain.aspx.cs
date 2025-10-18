@@ -20,7 +20,7 @@ namespace distroTrend
             int distroId = 0;
             Distro distro = null;
 
-            string _connString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
+            _connString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
 
             if (!IsPostBack) // Ensures dropdown is only populated once
             {
@@ -163,6 +163,72 @@ namespace distroTrend
             BLL.Version objVersion = new BLL.Version();
             List<distroTrend.Model.Version> versions = objVersion.GetVersions(_connString, distroId).ToList();
             return versions;
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            SetControls("edit");
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            SetControls();
+
+            bool hasUpdate = false;
+            
+            BLL.Distro objDistro = new BLL.Distro();
+            int distroId = Convert.ToInt32(ddlDistro.SelectedItem.Value);
+            _connString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
+            Distro distro = objDistro.GetDistro(_connString).Where(x => x.Id == distroId).SingleOrDefault();
+
+            if (distro.Description != txtDescription.Text)
+            {
+                distro.Description = txtDescription.Text;
+                hasUpdate = true;
+            }
+
+            if (distro.HomePage != txtUrl.Text)
+            {
+                distro.HomePage = txtUrl.Text;
+                hasUpdate = true;
+            }
+
+            if(hasUpdate)
+                objDistro.Update(_connString, distroId, distro);
+
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {            
+            SetControls();
+        }
+
+        private void SetControls(string mode="default")
+        {
+            btnEdit.Visible = true;
+            btnUpdate.Visible = false;
+            btnCancel.Visible = false;
+
+            txtDescription.Visible = false;
+            lblDescription.Visible = true;
+
+            txtUrl.Visible = false;
+            hlUrl.Visible = true;
+
+            if (mode != "default")
+            {
+                btnEdit.Visible = false;
+                btnUpdate.Visible = true;
+                btnCancel.Visible = true;
+
+                txtDescription.Visible = true;
+                lblDescription.Visible = false;
+                txtDescription.Text = lblDescription.Text;
+            
+                txtUrl.Visible = true;
+                hlUrl.Visible = false;
+                txtUrl.Text = hlUrl.NavigateUrl;
+            }
         }
     }
 }
