@@ -13,9 +13,10 @@ namespace BLL
             DataSet ds = objVersion.GetVersion(connString);
 
             var versionList = ds.Tables[0].AsEnumerable()
-                .Where(x => x.Field<int>("DistroId") == distroId)
+                .Where(x => x.Field<int>("DistroEditionId") == distroId)
                 .Select(dataRow => new distroTrend.Model.Version
                 {
+                    DistroEditionId = dataRow.Field<int>("DistroEditionId"),
                     Name = dataRow.Field<string>("Name")
                 })
                 .ToList();

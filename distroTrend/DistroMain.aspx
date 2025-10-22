@@ -1,10 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DistroMain.aspx.cs" Inherits="distroTrend.DistroMain" MasterPageFile="~/Site.Master" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-    <label for="ddlDistro">The selected distro is :</label>
-    <asp:DropDownList ID="ddlDistro" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDistro_SelectedIndexChanged"></asp:DropDownList>
     <div>
+        <label for="ddlDistro">The selected distro is :</label>
+        <asp:DropDownList ID="ddlDistro" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDistro_SelectedIndexChanged"></asp:DropDownList>
+    </div>
+    <div style="width: 70%; float:left">
         <br />
         <asp:Button ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" class="btn btn-primary"></asp:Button>
         <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" Visible="false" class="btn btn-primary"></asp:Button>
@@ -82,4 +83,47 @@
             </dd>
         </dl>
     </div>
+    <div style="width: 30%; float:right">
+        <table>
+            <tr>
+                <td>
+                    <span>Usability</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <ajaxToolkit:Rating ID="RatingUsability" runat="server" CurrentRating="0" MaxRating="5" 
+                        EmptyStarCssClass="emptypng" FilledStarCssClass="smileypng" StarCssClass="smileypng" 
+                        WaitingStarCssClass="donesmileypng"></ajaxToolkit:Rating>
+                </td>
+                <td>
+                    <asp:Label ID="lblRatingUsability" runat="server" Text=""></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Stability</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <ajaxToolkit:Rating ID="RatingStability" runat="server" CurrentRating="0" MaxRating="5" 
+                        EmptyStarCssClass="emptypng" FilledStarCssClass="smileypng" StarCssClass="smileypng" 
+                        WaitingStarCssClass="donesmileypng"></ajaxToolkit:Rating>
+                </td>
+                <td>
+                    <asp:Label ID="lblRatingStability" runat="server" Text=""></asp:Label>                    
+                </td>
+            </tr>
+        </table>
+
+        <%--<span>User Friendliness</span>--%>
+
+        <asp:Button ID="btnRating" runat="server" Text="Rate!" OnClick="btnRating_Click" />
+    </div>
+    <style type="text/css">
+ .emptypng { background-image: url(images/icons-star-empty.png); width: 48px; height: 48px; }
+ .smileypng { background-image: url(images/icons-star-filled.png); width: 48px; height: 48px; }
+ .donesmileypng { background-image: url(images/icons-star-filled.png); width: 48px; height: 48px; }
+</style>
 </asp:Content>

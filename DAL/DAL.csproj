@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBConn.cs" />
+    <Compile Include="Rating.cs" />
     <Compile Include="Edition.cs" />
     <Compile Include="Points.cs" />
     <Compile Include="Version.cs" />
