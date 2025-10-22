@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Rating.cs" />
     <Compile Include="Distro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Edition.cs" />

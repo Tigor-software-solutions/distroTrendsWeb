@@ -125,6 +125,7 @@ namespace distroTrend
             if (selectedDistroId > 0)
             {
                 LoadDistroData(selectedDistroId);
+                LoadRatings(selectedDistroId);
             }
         }
 
@@ -152,6 +153,33 @@ namespace distroTrend
             }
         }
 
+        private void LoadRatings(int distroId)
+        {
+            //Load Ratings
+            BLL.Rating objRating = new BLL.Rating();
+            List<distroTrend.Model.Version> versions = GetVersions(distroId);
+            int distroVersionLatest = versions.OrderByDescending(x => x.ReleaseDate).Select(x => x.DistroEditionId).FirstOrDefault();
+            List<Rating> listRating = objRating.GetRatings(_connString, distroVersionLatest);
+
+            int ratingUsability = 0;
+            int ratingStability = 0;
+
+            if (listRating.Count > 0)
+            {
+                int.TryParse(listRating[0].RatingUsability.ToString(), out ratingUsability);
+                int.TryParse(listRating[0].RatingStability.ToString(), out ratingStability);
+            }
+
+            RatingUsability.CurrentRating = ratingUsability;
+
+            if (ratingUsability > 0)
+                lblRatingUsability.Text = "Your rating: " + ratingUsability;
+
+            RatingStability.CurrentRating = ratingStability;
+
+            if (ratingStability > 0)
+                lblRatingStability.Text = "Your rating: " + ratingStability;
+        }
         private List<distroTrend.Model.Edition> GetEditions(int distroId)
         {
             BLL.Edition objEdition = new BLL.Edition();
@@ -229,6 +257,28 @@ namespace distroTrend
                 hlUrl.Visible = false;
                 txtUrl.Text = hlUrl.NavigateUrl;
             }
+        }
+
+        protected void btnRating_Click(object sender, EventArgs e)
+        {
+            int distroId = Convert.ToInt32(ddlDistro.SelectedItem.Value);
+            _connString = ConfigurationManager.ConnectionStrings["dbConnection"].ConnectionString;
+            
+            BLL.Rating objRating = new BLL.Rating();
+            int userId = 1;
+            int ratingUsability = RatingUsability.CurrentRating;
+            int ratingStability = RatingStability.CurrentRating;
+
+            List<distroTrend.Model.Version> versions = GetVersions(distroId);
+            int distroVersionLatest = versions.OrderByDescending(x => x.ReleaseDate).Select(x => x.DistroEditionId).FirstOrDefault();
+            List<Rating> listRating = objRating.GetRatings(_connString, distroVersionLatest);
+
+            int distroEditionId = distroVersionLatest;
+
+            if (listRating.Count > 0)
+                objRating.Update(_connString, distroEditionId, userId, ratingUsability, ratingStability);
+            else
+                objRating.Insert(_connString, distroEditionId, userId, ratingUsability);            
         }
     }
 }
