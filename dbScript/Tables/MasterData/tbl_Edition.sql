@@ -1,6 +1,17 @@
 IF NOT EXISTS (
 		SELECT *
 		FROM [tbl_Edition]
+		WHERE [Name] = 'GNOME'
+		)
+BEGIN
+	INSERT INTO [dbo].[tbl_Edition] ([Name])
+	VALUES ('GNOME')
+END
+GO
+
+IF NOT EXISTS (
+		SELECT *
+		FROM [tbl_Edition]
 		WHERE [Name] = 'Cinnamon'
 		)
 BEGIN
