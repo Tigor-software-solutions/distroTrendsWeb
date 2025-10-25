@@ -22,7 +22,8 @@ SELECT *
 FROM tbl_DistroEdition
 
 SELECT *
-FROM tbl_EditionVersion
+FROM tbl_Points
+
 
 SELECT * FROM tbl_Edition E
 Inner Join tbl_DistroEdition D ON E.Id = D.EditionId

@@ -6,6 +6,12 @@ CREATE TABLE #myTable (
 --Insert data into Temporary Tables    
 INSERT INTO #myTable
 VALUES (
+	'UBUNTU'
+	,'GNOME'
+	);
+
+INSERT INTO #myTable
+VALUES (
 	'LINUXMIN'
 	,'Cinnamon'
 	);
@@ -20,6 +26,12 @@ INSERT INTO #myTable
 VALUES (
 	'LINUXMIN'
 	,'Xfce'
+	);
+
+INSERT INTO #myTable
+VALUES (
+	'ZORIN'
+	,'GNOME'
 	);
 
 DECLARE @Code NCHAR(8)

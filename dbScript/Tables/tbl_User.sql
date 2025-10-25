@@ -1,8 +1,8 @@
 CREATE TABLE [dbo].[tbl_User](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[EmailId] [nvarchar](50) NOT NULL,
-	[Name] [varchar](50) NULL,
-	[IsAdmin] [bit] NOT NULL,
+	[EmailId] [varchar](50) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[IsAdmin] [bit] NULL,
  CONSTRAINT [PK_tbl_User] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
